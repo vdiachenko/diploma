@@ -1,0 +1,10 @@
+.page {
+    text-align: center;
+}
+
+.title {
+    max-width: 500px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 45px;
+}

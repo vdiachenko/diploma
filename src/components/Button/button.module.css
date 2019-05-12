@@ -1,0 +1,56 @@
+.button {
+    position: relative;
+    color: #000;
+    font-size: 14px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: 1px solid #000;
+    background-color: #fff;
+    overflow: hidden;
+    user-select: none;
+}
+
+.button:not(:disabled) {
+    cursor: pointer;
+}
+
+.loading {
+    composes: button;
+
+    color: transparent;
+}
+
+.spinner {
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    transform: translateY(-100%);
+    transition: transform 150ms ease-in-out;
+    z-index: 1;
+}
+
+.button,
+.button a {
+    transition: color 150ms ease-in-out;
+}
+
+.button:not(:disabled):hover,
+.button:not(:disabled):hover a {
+    color: #fff;
+}
+
+.button:not(:disabled):hover::before {
+    transform: translateY(0);
+}
+
+.children {
+    position: relative;
+    z-index: 2;
+}

@@ -1,0 +1,21 @@
+.page {
+    min-width: 250px;
+}
+
+.title {
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
+.form {
+    min-width: 300px;
+}
+
+.fullname {
+    cursor: pointer;
+    border-bottom: 1px solid #000;
+}
+
+.greeting {
+    margin-top: 5px;
+}

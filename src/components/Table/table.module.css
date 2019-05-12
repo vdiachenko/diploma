@@ -1,0 +1,17 @@
+.table {
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.head,
+.row:not(:last-child) {
+    border-bottom: 1px solid #607d8b;
+}
+
+.cell {
+    padding: 15px;
+}
+
+.cell:not(:last-child) {
+    border-right: 1px solid #607d8b;
+}

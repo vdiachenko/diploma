@@ -1,31 +1,70 @@
 {
-  "name": "diploma",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "diploma",
+    "version": "0.1.0",
+    "private": true,
+    "proxy": "http://localhost:8080/",
+    "dependencies": {
+        "axios": "^0.18.0",
+        "bcrypt": "^3.0.6",
+        "body-parser": "^1.19.0",
+        "connected-react-router": "^6.4.0",
+        "cookie-parser": "^1.4.4",
+        "dayjs": "^1.8.13",
+        "express": "^4.16.4",
+        "formik": "^1.5.4",
+        "history": "^4.9.0",
+        "husky": "^2.2.0",
+        "jsonwebtoken": "^8.5.1",
+        "lint-staged": "^8.1.6",
+        "mongoose": "^5.5.5",
+        "nanoid": "^2.0.1",
+        "normalize.css": "^8.0.1",
+        "prettier": "^1.17.0",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-redux": "^7.0.3",
+        "react-router-dom": "^5.0.0",
+        "react-scripts": "3.0.0",
+        "react-useinterval": "^1.0.1",
+        "recharts": "^1.5.0",
+        "redux": "^4.0.1",
+        "redux-thunk": "^2.3.0",
+        "shuffle-array": "^1.0.1",
+        "use-timeout": "^1.0.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+            "prettier --single-quote --write",
+            "git add"
+        ]
+    },
+    "devDependencies": {
+        "postcss-normalize": "^7.0.1"
+    }
 }
