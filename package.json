@@ -39,7 +39,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "serve": "node --experimental-modules server/index.mjs",
-        "prod": "concurrently \"npm run build\" \"npm run serve\""
+        "prod": "npm run build && npm run serve"
     },
     "eslintConfig": {
         "extends": "react-app"
