@@ -7,6 +7,7 @@
         "axios": "^0.18.0",
         "bcrypt": "^3.0.6",
         "body-parser": "^1.19.0",
+        "concurrently": "^4.1.0",
         "connected-react-router": "^6.4.0",
         "cookie-parser": "^1.4.4",
         "dayjs": "^1.8.13",
@@ -36,7 +37,9 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "serve": "node --experimental-modules server/index.mjs",
+        "prod": "concurrently \"npm run build\" \"npm run serve\""
     },
     "eslintConfig": {
         "extends": "react-app"
