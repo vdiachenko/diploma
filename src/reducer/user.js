@@ -1,4 +1,10 @@
-import { CHECK_TOKEN, AUTH, LOAD_SURVEYS, SUCCESS } from '../constants'
+import {
+    CHECK_TOKEN,
+    AUTH,
+    REGISTER,
+    LOAD_SURVEYS,
+    SUCCESS,
+} from '../constants'
 
 export default (user = null, action) => {
     const { type, res } = action
@@ -15,6 +21,9 @@ export default (user = null, action) => {
                 ...user,
                 surveys: [...res],
             }
+
+        case REGISTER + SUCCESS:
+            return { ...res }
 
         default:
             return user

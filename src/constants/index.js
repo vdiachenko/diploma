@@ -3,6 +3,7 @@ export const SUCCESS = '_SUCCESS'
 export const FAIL = '_FAIL'
 
 export const AUTH = 'AUTH'
+export const REGISTER = 'REGISTER'
 export const CHECK_TOKEN = 'CHECK_TOKEN'
 
 export const LOAD_USER = 'LOAD_USER'

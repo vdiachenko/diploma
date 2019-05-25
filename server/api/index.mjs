@@ -49,7 +49,25 @@ router.post('/auth', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-    db.createUser(req.body).then(data => res.send(data))
+    db.createUser(req.body).then(async user => {
+        const payload = {
+            _id: user._id,
+            code: user.code,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            middlename: user.middlename,
+            gender: user.gender,
+            dob: user.dob,
+            education: user.education,
+            position: user.position,
+        }
+
+        const token = jwt.sign(payload, process.env.PRIVATE_KEY, {
+            expiresIn: '1h'
+        })
+
+        res.cookie('token', token, { httpOnly: true }).send(payload)
+    })
 })
 
 router.get('/check-token', authMiddleware, (req, res) => {

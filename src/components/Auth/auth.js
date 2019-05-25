@@ -17,6 +17,7 @@ const initialValues = {
 }
 
 function Auth({ user, loading, fetchUser, auth }) {
+    const [newUser, setNewUser] = useState(null)
     const [existingUser, setExistingUser] = useState(null)
     const [uniqId, setUniqId] = useState(null)
 
@@ -27,57 +28,101 @@ function Auth({ user, loading, fetchUser, auth }) {
     function validate(values) {
         let errors = {}
 
-        if (!values.code) {
-            values.code = 'Обязательное поле'
-        }
-
         return errors
     }
 
     async function authHandler(values) {
-        if (values.code && values.password) {
-            auth(values)
-            return
-        }
-
         const res = await axios.get(`/api/users/${values.code}`)
 
         if (!res.data) {
-            setExistingUser(false)
+            setNewUser(values)
         } else {
             setExistingUser(res.data)
         }
     }
 
-    function existingUserBody() {
+    function loginHandler(values) {
+        if (!values.code || !values.password) {
+            return
+        }
+
+        auth(values)
+    }
+
+    function authBody() {
         return (
-            <React.Fragment>
-                <div className="row row-code">
-                    <Field
-                        type="text"
-                        name="code"
-                        id={`${uniqId}-code`}
-                        readOnly={true}
-                    />
-                    <label htmlFor={`${uniqId}-code`}>
-                        Индивидуальный номер
-                    </label>
-                    <small className={styles.greeting}>
-                        Войти как: <b>{getGreetingName(existingUser)}</b>
-                    </small>
-                </div>
+            <Formik
+                initialValues={initialValues}
+                validate={validate}
+                onSubmit={authHandler}
+            >
+                <Form className={styles.form}>
+                    <div className="row row-code">
+                        <Field type="text" name="code" id={`${uniqId}-code`} />
 
-                <div className="row row-password">
-                    <Field
-                        type="password"
-                        name="password"
-                        id={`${uniqId}-password`}
-                    />
+                        <label htmlFor={`${uniqId}-code`}>
+                            Индивидуальный номер
+                        </label>
+                    </div>
 
-                    <label htmlFor={`${uniqId}-password`}>Пароль</label>
-                </div>
-            </React.Fragment>
+                    <div className="row">
+                        <Button type="submit" isLoading={loading}>
+                            Продолжить
+                        </Button>
+                    </div>
+                </Form>
+            </Formik>
         )
+    }
+
+    function existingUserBody(user) {
+        return (
+            <Formik
+                initialValues={{
+                    code: user.code,
+                    password: '',
+                }}
+                validate={validate}
+                onSubmit={loginHandler}
+            >
+                <Form className={styles.form}>
+                    <div className="row row-code">
+                        <Field
+                            type="text"
+                            name="code"
+                            id={`${uniqId}-code`}
+                            readOnly={true}
+                        />
+                        <label htmlFor={`${uniqId}-code`}>
+                            Индивидуальный номер
+                        </label>
+                        <small className={styles.greeting}>
+                            Войти как: <b>{getGreetingName(user)}</b>
+                        </small>
+                    </div>
+
+                    <div className="row row-password">
+                        <Field
+                            type="password"
+                            name="password"
+                            id={`${uniqId}-password`}
+                        />
+
+                        <label htmlFor={`${uniqId}-password`}>Пароль</label>
+                    </div>
+
+                    <div className="row">
+                        <Button type="submit" isLoading={loading}>
+                            Продолжить
+                        </Button>
+                    </div>
+                </Form>
+            </Formik>
+        )
+    }
+
+    function newUserBody(user) {
+        return <AccountCreate {...user} />
     }
 
     return (
@@ -92,45 +137,9 @@ function Auth({ user, loading, fetchUser, auth }) {
 
             {user && <Redirect to="/tests" />}
 
-            <Formik
-                initialValues={initialValues}
-                validate={validate}
-                onSubmit={authHandler}
-            >
-                <Form className={styles.form}>
-                    {!existingUser && (
-                        <div className="row row-code">
-                            <Field
-                                type="text"
-                                name="code"
-                                id={`${uniqId}-code`}
-                                readOnly={
-                                    existingUser !== null && !existingUser
-                                }
-                            />
-                            <ErrorMessage name="code">
-                                {msg => <div>asdf{msg}</div>}
-                            </ErrorMessage>
-                            <label htmlFor={`${uniqId}-code`}>
-                                Индивидуальный номер
-                            </label>
-                        </div>
-                    )}
-
-                    {existingUser !== null &&
-                        existingUser &&
-                        existingUserBody()}
-                    {existingUser !== null && !existingUser && (
-                        <AccountCreate />
-                    )}
-
-                    <div className="row">
-                        <Button type="submit" isLoading={loading}>
-                            Продолжить
-                        </Button>
-                    </div>
-                </Form>
-            </Formik>
+            {!existingUser && !newUser && authBody()}
+            {existingUser && existingUserBody(existingUser)}
+            {newUser && newUserBody(newUser)}
         </Page>
     )
 }

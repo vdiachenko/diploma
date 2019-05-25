@@ -28,8 +28,6 @@ if (process.env.DB_NAME) {
     connectionString += `/${process.env.DB_NAME}`
 }
 
-console.log(connectionString)
-
 export function connect() {
     mongoose.connect(connectionString, {
         useNewUrlParser: true
@@ -62,6 +60,10 @@ export function createUser({
     firstname,
     lastname,
     middlename,
+    gender,
+    dob,
+    education,
+    position,
 }) {
     const user = new User({
         code,
@@ -69,6 +71,10 @@ export function createUser({
         firstname,
         lastname,
         middlename,
+        gender,
+        dob,
+        education,
+        position,
     })
 
     return user.save()

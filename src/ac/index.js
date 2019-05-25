@@ -1,6 +1,7 @@
 import { replace } from 'connected-react-router'
 import {
     AUTH,
+    REGISTER,
     CHECK_TOKEN,
     LOAD_USER,
     LOAD_USERS,
@@ -13,6 +14,15 @@ export const auth = data => {
     return {
         type: AUTH,
         callAPI: '/api/auth',
+        method: 'POST',
+        payload: data,
+    }
+}
+
+export const register = data => {
+    return {
+        type: REGISTER,
+        callAPI: '/api/register',
         method: 'POST',
         payload: data,
     }
