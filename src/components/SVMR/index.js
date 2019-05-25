@@ -1,5 +1,7 @@
+import SVMRManual from './manual'
 import SVMRResults from './results'
+import SVMRSettings from './settings'
 
-export { SVMRResults }
+export { SVMRManual, SVMRResults, SVMRSettings }
 
 export { default } from './svmr'

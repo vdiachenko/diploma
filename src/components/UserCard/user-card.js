@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { getGreetingName } from '../../utils'
 import styles from './user-card.module.css'
 
 function userCard({ user }) {
     return (
         user && (
-            <div className={styles.user}>
+            <NavLink to="/account" className={styles.user}>
                 {user.gender === 'male' && (
                     <span role="img" aria-label="gender">
                         👨‍💼
@@ -18,7 +19,7 @@ function userCard({ user }) {
                     </span>
                 )}
                 <b>{getGreetingName(user)}</b>
-            </div>
+            </NavLink>
         )
     )
 }

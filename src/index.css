@@ -37,6 +37,10 @@ h1 {
     margin-bottom: 0;
 }
 
+form {
+    max-width: 400px;
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -82,7 +86,11 @@ h1 {
     flex-grow: 1;
 }
 
-form {
+textarea {
+    min-width: 400px;
+    min-height: 150px;
+    padding: 10px 15px;
+    border-color: #000;
 }
 
 input,

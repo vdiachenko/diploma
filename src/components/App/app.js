@@ -9,8 +9,12 @@ import Auth from '../Auth'
 import Tests from '../Tests'
 import Account from '../Account'
 import CreateUser from '../CreateUser'
-import SVMRTest from '../SVMR'
-import SchulteTest, { SchulteResults } from '../Schulte'
+import SVMRTest, { SVMRManual, SVMRSettings } from '../SVMR'
+import SchulteTest, {
+    SchulteManual,
+    SchulteResults,
+    SchulteSettings,
+} from '../Schulte'
 import Survey from '../Survey'
 import styles from './app.module.css'
 
@@ -23,8 +27,24 @@ function App({ user, checkToken }) {
         <div className={styles.wrapper}>
             <Switch>
                 <Route path="/user/create" component={CreateUser} />
-                <Route path="/tests/svmr" component={SVMRTest} />
+                <Route path="/tests/svmr" component={SVMRTest} exact />
+                <Route path="/tests/svmr/manual" component={SVMRManual} exact />
+                <Route
+                    path="/tests/svmr/settings"
+                    component={SVMRSettings}
+                    exact
+                />
                 <Route path="/tests/schulte" component={SchulteTest} exact />
+                <Route
+                    path="/tests/schulte/manual"
+                    component={SchulteManual}
+                    exact
+                />
+                <Route
+                    path="/tests/schulte/settings"
+                    component={SchulteSettings}
+                    exact
+                />
                 <Route
                     path="/tests/schulte/result"
                     component={SchulteResults}

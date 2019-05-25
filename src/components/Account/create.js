@@ -19,6 +19,10 @@ function AccountCreate() {
         setUniqId((Date.now() + Math.random()).toString())
     }, [])
 
+    function submitHandler(values) {
+        console.log(values)
+    }
+
     return (
         <Formik
             initialValues={initialValues}
@@ -38,7 +42,7 @@ function AccountCreate() {
                 // }
                 return errors
             }}
-            onSubmit
+            onSubmit={submitHandler}
         >
             <Form>
                 <div className="row">

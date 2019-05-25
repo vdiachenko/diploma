@@ -1,5 +1,7 @@
+import SchulteManual from './manual'
 import SchulteResults from './results'
+import SchulteSettings from './settings'
 
-export { SchulteResults }
+export { SchulteManual, SchulteResults, SchulteSettings }
 
 export { default } from './schulte'

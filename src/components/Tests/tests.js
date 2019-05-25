@@ -9,12 +9,12 @@ function Tests() {
 
             <ul>
                 <li>
-                    <NavLink to="/tests/schulte">
+                    <NavLink to="/tests/schulte/manual">
                         "Таблицы Шульте" ("Шульте")
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/tests/svmr">
+                    <NavLink to="/tests/svmr/manual">
                         "Простая зрительно-моторная реакция" ("ПЗМР")
                     </NavLink>
                 </li>
