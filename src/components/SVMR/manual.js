@@ -23,7 +23,7 @@ function Settings() {
                             <div>{manual}</div>
                         </div>
 
-                        <Button type="submit">
+                        <Button type="button">
                             <NavLink to="/tests/svmr">Начать</NavLink>
                         </Button>
                     </form>
