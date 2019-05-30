@@ -5,8 +5,8 @@ import { userSelector } from '../../selectors'
 import Page from '../Page'
 import Stimulus from './stimulus'
 
-const testsCount = 2
-const stimulusCount = 2
+const testsCount = 3
+const stimulusCount = 5
 const ids = Array.from({ length: testsCount }, (v, k) => ++k)
 const results = []
 
@@ -35,7 +35,9 @@ function SVMR({ user, saveSurvey }) {
 
     return (
         <Page title="Простая зрительно-моторная реакция">
-            Проба № {step}
+            <p>
+                Проба <b>№ {step}</b>
+            </p>
             {stimulus[step - 1]}
         </Page>
     )

@@ -82,11 +82,11 @@ function Square({ testsCount, visible, children, onPassed }) {
 
     return (
         <div>
-            {
+            {step === null && (
                 <Button type="button" onClick={startHandler}>
                     Начать
                 </Button>
-            }
+            )}
             {isVisible && <div className={styles.square} />}
         </div>
     )
